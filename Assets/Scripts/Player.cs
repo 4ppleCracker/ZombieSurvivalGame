@@ -30,7 +30,7 @@ public class Player : MonoBehaviour, IEntity
         Move(movement);
     }
     public void Move(Vector3 movement) {
-        Vector3 Position = new Vector3();
+        Vector3 Position = transform.position;
         Entity.Move(ref Position, movement, MovementSpeed);
         transform.position = Position;
     }

@@ -11,7 +11,7 @@ public class Entity : MonoBehaviour, IEntity
     }
 
     public void Move(Vector3 movement) {
-        Vector3 Position = new Vector3();
+        Vector3 Position = transform.position;
         Move(ref Position, movement, MovementSpeed);
         transform.position = Position;
     }
