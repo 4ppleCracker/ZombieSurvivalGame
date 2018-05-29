@@ -19,32 +19,26 @@ public enum TileType
 }
 
 public class Tile : MonoBehaviour {
-    public GameObject TileObject = null;
-    private Dictionary<string, Sprite> TileSprites = new Dictionary<string, Sprite>();
+    public const float Size = .75f;
+    public static Dictionary<string, Sprite> TileSprites = new Dictionary<string, Sprite>();
     public TileType Type;
+    public bool selected = false;
+    public Vector2 position;
     public string TypeName {
         get {
             return Enum.GetName(typeof(TileType), Type);
         }
     }
     public Sprite GetSprite() {
-        return TileSprites[TypeName];
+        if (TileSprites.ContainsKey(TypeName))
+            return TileSprites[TypeName];
+        else
+            throw new Exception("No such key as " + TypeName + " in TileSprites");
     }
     public void UpdateTile() {
-        gameObject.GetComponent<SpriteRenderer>().sprite = GetSprite();
-    }
-
-    private void Start() {
-        Type type = typeof(TileType);
-        foreach (TileType tiletype in Enum.GetValues(typeof(TileType))) {
-            string tiletypestr = tiletype.ToString();
-
-            MemberInfo[] memberInfos = type.GetMember(tiletypestr);
-            object[] attributes = memberInfos[0].GetCustomAttributes(false);
-            TileSpriteResource resource = (TileSpriteResource)attributes[0];
-
-            Sprite sprite = Resources.Load<Sprite>(resource.location);
-            TileSprites.Add(tiletypestr, sprite);
-        }
+        Sprite sprite = GetSprite();
+        SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
+        renderer.sprite = sprite;
+        renderer.color = (selected ? Color.red : Color.white);
     }
 }
