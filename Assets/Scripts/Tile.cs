@@ -12,12 +12,6 @@ public class TileSpriteResource : Attribute
     }
 }
 
-public enum TileType
-{
-    [TileSpriteResource("Sprites/Ground/Grass")]
-    Grass
-}
-
 public class Tile : MonoBehaviour {
     public const float Size = .75f;
     public static Dictionary<string, Sprite> TileSprites = new Dictionary<string, Sprite>();

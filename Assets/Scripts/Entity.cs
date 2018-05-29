@@ -9,4 +9,20 @@ public class Entity : MonoBehaviour, IEntity
     private void Start() {
         MovementSpeed = 25;
     }
+
+    public void Move(Vector3 movement) {
+        Vector3 Position = new Vector3();
+        Move(ref Position, movement, MovementSpeed);
+        transform.position = Position;
+    }
+
+    public static void Move(ref Vector3 Position, Vector3 movement, int MovementSpeed) {
+        movement.Normalize();
+        movement *= MovementSpeed;
+        movement *= Time.deltaTime;
+
+        Vector3 newposition = Vector3.Lerp(Position, Position + movement, 100 * Time.deltaTime);
+        if (Physics.Raycast(newposition, Vector3.down))
+            Position = newposition;
+    }
 }

@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
+public enum TileType
+{
+    [TileSpriteResource("Sprites/Ground/Grass")]
+    Grass
+}
+
 public class TileManager : MonoBehaviour
 {
     public static TileManager singleton;

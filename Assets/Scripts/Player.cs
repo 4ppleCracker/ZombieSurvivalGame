@@ -27,13 +27,11 @@ public class Player : MonoBehaviour, IEntity
         if (Input.GetKey(KeyCode.D)) {
             movement += Vector3.right;
         }
-        movement.Normalize();
-        movement *= MovementSpeed;
-        movement *= Time.deltaTime;
-
-        //transform.position = Vector3.Lerp(transform.position, transform.position + movement, 10);
-        Vector3 newposition = Vector3.Lerp(transform.position, transform.position + movement, 100 * Time.deltaTime);
-        if (Physics.Raycast(newposition, Vector3.down))
-            transform.position = newposition;
+        Move(movement);
+    }
+    public void Move(Vector3 movement) {
+        Vector3 Position = new Vector3();
+        Entity.Move(ref Position, movement, MovementSpeed);
+        transform.position = Position;
     }
 }
