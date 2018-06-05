@@ -21,6 +21,6 @@ public class PlayerManager : MonoBehaviour
         Vector3 mid = TileManager.Middle;
         mid.y = 3;
         ActivePlayer.transform.position = mid;
-        CameraManager.singleton.target = ActivePlayer;
+        CameraManager.singleton.Target = ActivePlayer;
     }
 }

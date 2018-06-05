@@ -6,18 +6,18 @@ public class CameraManager : MonoBehaviour
 {
     public static CameraManager singleton;
 
-    public GameObject target;
-    private new Camera camera;
+    public GameObject Target;
+    private Camera Camera;
 
     private void Start() {
         singleton = GetComponent<CameraManager>();
-        camera = GetComponent<Camera>();
+        Camera = GetComponent<Camera>();
     }
     private void Update() {
         Move();
     }
     public void Move() {
-        Vector3 targetpos = target.transform.position;
-        camera.transform.position = new Vector3(targetpos.x, camera.transform.position.y, targetpos.z);
+        Vector3 targetpos = Target.transform.position;
+        Camera.transform.position = new Vector3(targetpos.x, Camera.transform.position.y, targetpos.z);
     }
 }

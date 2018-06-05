@@ -23,6 +23,11 @@ public class Tile : MonoBehaviour {
             return Enum.GetName(typeof(TileType), Type);
         }
     }
+    public Vector2 Pos2D {
+        get {
+            return new Vector2(transform.position.x, transform.position.z);
+        }
+    }
     public Sprite GetSprite() {
         if (TileSprites.ContainsKey(TypeName))
             return TileSprites[TypeName];
